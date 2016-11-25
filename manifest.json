@@ -1,0 +1,13 @@
+{
+  "name": "MagiTag",
+  "description": "Easy automated music tagging",
+  "version": "0.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": [
+        "script/background.js"
+      ]
+    }
+  }
+}

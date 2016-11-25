@@ -1,0 +1,12 @@
+{
+  "name": "magitag",
+  "version": "0.0.1",
+  "description": "Easy automated music tagging",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "author": "Jonas Gerdes",
+  "devDependencies": {
+    "gulp-exec": "^2.1.3"
+  }
+}

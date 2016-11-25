@@ -1,0 +1,23 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.droparea {
+    background-color: #009688;
+    color: #f4f4f4;
+    text-align: center;
+    font-size: 1.5em;
+    padding-top: 3em;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+.dragging {
+    background-color: #00796B;
+    font-size: 1.6em;
+}

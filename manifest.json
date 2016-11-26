@@ -11,6 +11,6 @@
     }
   },
   "permissions": [
-    "fileSystem"
+    {"fileSystem": ["write", "retainEntries", "directory"]}
   ]
 }

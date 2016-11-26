@@ -9,5 +9,8 @@
         "script/background.js"
       ]
     }
-  }
+  },
+  "permissions": [
+    "fileSystem"
+  ]
 }

@@ -2,19 +2,17 @@ class DragDropHandler {
 
     constructor(dropElement) {
         let self = this;
-        this._fileListener = null;
+        this._dropListener = null;
 
         dropElement.addEventListener('drop', function (event) {
+            console.log(event);
             event.stopPropagation();
             event.preventDefault();
-            let files = event.dataTransfer.files;
-            let i = 0, file;
-            for (; file = files[i]; i++) {
-                if (self._fileListener != null) {
-                    self._fileListener(file);
-                }
-            }
             dropElement.classList.remove('dragging');
+
+            if(self._dropListener != null) {
+                self._dropListener(event.dataTransfer.items);
+            }
         });
 
         dropElement.addEventListener('dragenter', function (event) {
@@ -31,7 +29,7 @@ class DragDropHandler {
         });
     }
 
-    set onFileDrop(listener) {
-        this._fileListener = listener;
+    set onDrop(listener) {
+        this._dropListener = listener;
     }
 }

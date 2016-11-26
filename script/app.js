@@ -27,11 +27,16 @@ window.addEventListener('load', function () {
                             });
                         let fileName = "";
                         for (let i = 0; i < data.artists.length; i++) {
-                            writer.setFrame('TPE1', [data.artists[i].name]);
-                            if (i > 0) {
-                                fileName += ", ";
+                            if (data.artists[i].type === 'artist') {
+                                writer.setFrame('TPE1', [data.artists[i].name]);
+                                if (fileName.length > 0) {
+                                    fileName += ", ";
+                                }
+                                fileName += data.artists[i].name;
                             }
-                            fileName += data.artists[i].name;
+                            if (data.artists[i].type === 'remixer') {
+                                writer.setFrame('TPE4', data.artists[i].name);
+                            }
                         }
                         writer.addTag();
 

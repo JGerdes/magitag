@@ -7,7 +7,50 @@ class BeatportSource {
 
     requestTags(artist, title, onSuccess) {
         let url = this._getSearchURL(artist, title);
-        this._getTrackData(url, onSuccess);
+        //this._getTrackData(url, onSuccess);
+        onSuccess({
+            id: 1234,
+            name: 'name',
+            title: 'name (mixName)',
+            label: {
+                name: 'labelName'
+            },
+            release: {
+                id: 123,
+                name: 'releaseName'
+            },
+            releaseDate: '2016-11-27',
+            catalogNumber: 'ABC012',
+            artists: [
+                {
+                    name: 'artistName',
+                    type: 'artist'
+                }
+            ],
+            mixName: 'mixName',
+            genres: [
+                {
+                    name: 'genre'
+                }
+            ],
+            bpm: 123,
+            key: {
+                standard: {
+                    letter: 'A',
+                    sharp: false,
+                    flat: false,
+                    chord: 'major'
+                }
+            },
+            trackId: 1,
+            totalTracks: 2,
+            dynamicImages: {
+                main: {
+                    url: '//url/to/image{hq}/{w}x{h}/image.jpg'
+                }
+            }
+
+        });
     }
 
     _getTrackData(url, onSuccess) {

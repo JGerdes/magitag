@@ -3,6 +3,9 @@ window.addEventListener('load', function () {
     //todo: refacor all this
     console.log('started app');
 
+    let fileSystem = new FileSystem();
+    fileSystem.init();
+
     let beatportSource = new BeatportSource();
 
     let dragDropHandler = new DragDropHandler(document.querySelector('.droparea'));
@@ -73,20 +76,12 @@ window.addEventListener('load', function () {
                             .replace('{w}', '1024')
                             .replace('{h}', '1024');
                         downloadInBufferArray(coverUrl, function (cover) {
-                            writer.setFrame('APIC', cover);
+                            if (cover !== null) {
+                                writer.setFrame('APIC', cover);
+                            }
                             writer.addTag();
-
                             fileName += " - " + data.title + ".mp3";
-                            let blob = new Blob([writer.arrayBuffer]);
-                            chrome.fileSystem.chooseEntry({type: 'openDirectory'}, function (entry) {
-                                chrome.fileSystem.getWritableEntry(entry, function (entry) {
-                                    entry.getFile(fileName, {create: true}, function (entry) {
-                                        entry.createWriter(function (writer) {
-                                            writer.write(blob);
-                                        });
-                                    });
-                                });
-                            });
+                            fileSystem.saveArrayBufferToFile(fileName, writer.arrayBuffer);
                         });
                     };
                     reader.readAsArrayBuffer(items[0].file);
@@ -102,15 +97,16 @@ window.addEventListener('load', function () {
 
 
 function downloadInBufferArray(url, callback) {
-    var d = new XMLHttpRequest();
-    d.responseType = "arraybuffer";
-    d.addEventListener("load", function (a) {
-        if (d.status === 200) {
-            callback(d.response);
-        } else {
-            callback(null);
-        }
-    });
-    d.open("GET", url, true);
-    d.send();
+        callback(null);
+    /*var d = new XMLHttpRequest();
+     d.responseType = "arraybuffer";
+     d.addEventListener("load", function (a) {
+     if (d.status === 200) {
+     callback(d.response);
+     } else {
+     callback(null);
+     }
+     });
+     d.open("GET", url, true);
+     d.send();*/
 }

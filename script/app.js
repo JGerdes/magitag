@@ -75,7 +75,7 @@ window.addEventListener('load', function () {
                         coverUrl = coverUrl.replace('{hq}', '_hq')
                             .replace('{w}', '1024')
                             .replace('{h}', '1024');
-                        downloadInBufferArray(coverUrl, function (cover) {
+                        Network.getAsArrayBuffer(coverUrl, function (cover) {
                             if (cover !== null) {
                                 writer.setFrame('APIC', cover);
                             }
@@ -94,19 +94,3 @@ window.addEventListener('load', function () {
 
     }
 });
-
-
-function downloadInBufferArray(url, callback) {
-        callback(null);
-    /*var d = new XMLHttpRequest();
-     d.responseType = "arraybuffer";
-     d.addEventListener("load", function (a) {
-     if (d.status === 200) {
-     callback(d.response);
-     } else {
-     callback(null);
-     }
-     });
-     d.open("GET", url, true);
-     d.send();*/
-}

@@ -57,7 +57,7 @@ class BeatportSource {
         //todo load data and parse it with parser
         console.log(url);
         let self = this;
-        this._loadURL(url, function (htmlData) {
+        Network.get(url, function (htmlData) {
             let parser = new DOMParser();
             let dom = parser.parseFromString(htmlData, "text/html");
             console.log(dom);
@@ -91,13 +91,5 @@ class BeatportSource {
         return "http://classic.beatport.com/search?query=" + query;
     }
 
-    _loadURL(url, callback) {
-        var d = new XMLHttpRequest;
-        d.addEventListener("load", function (a) {
-            callback(a.target.responseText)
-        });
-        d.open("GET", url);
-        d.send();
-    }
 
 }

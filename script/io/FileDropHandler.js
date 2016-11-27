@@ -10,14 +10,8 @@ class DragDropHandler {
             event.preventDefault();
             dropElement.classList.remove('dragging');
 
-            let musicFiles = [];
-            for (let i = 0; i < event.dataTransfer.items.length; i++) {
-                let fileEntry = event.dataTransfer.items[i].webkitGetAsEntry();
-                let file = event.dataTransfer.files[i];
-                musicFiles.push(new MusicFile(fileEntry, file));
-            }
             if (self._dropListener != null) {
-                self._dropListener(musicFiles);
+                self._dropListener(event.dataTransfer.files);
             }
         });
 

@@ -7,8 +7,9 @@ window.addEventListener('load', function () {
     let dragDropHandler = new DragDropHandler(document.querySelector('.droparea'));
 
     dragDropHandler.onDrop = function (items) {
-        items.forEach(function (item) {
-            tagger.process(item.file);
-        });
+        for (let i = 0; i < items.length; i++) {
+            tagger.process(items[i]);
+        }
+
     }
 });
